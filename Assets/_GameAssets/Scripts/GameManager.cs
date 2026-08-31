@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _settingsPopupUI;
 
     [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private AudioSource _deadSound;
+    public AudioManager _managerAudio;
+
     public bool _isGamePausePopupActive = false;
 
     private bool _isGameOverPopupActive = false;
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         managerGame.ChangeGameState(GameState.GameOver);
         Time.timeScale = 0;
+        _managerAudio._deadSound.Play();
         _settingsButton.interactable= _isGamePausePopupActive;
         _gameOverUI.SetActive(!_isGameOverPopupActive);
         _isGameOverPopupActive = !_isGameOverPopupActive;
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
     {
         managerGame.ChangeGameState(GameState.Play);
         Time.timeScale = 1;
-        _settingsButton.enabled = _isGamePausePopupActive;
+        _settingsButton.interactable = _isGamePausePopupActive;
         _settingsPopupUI.SetActive(!_isGamePausePopupActive);
         _isGamePausePopupActive = !_isGamePausePopupActive;
     }

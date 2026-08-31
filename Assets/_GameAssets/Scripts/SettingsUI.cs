@@ -1,4 +1,6 @@
+using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,8 +18,12 @@ public class SettingsUI : MonoBehaviour
     // public Time _currentTime = Time.timeScale;
 
     
+    [SerializeField] private Button _musicButton;
+    [SerializeField] private Image _musicOnImage;
+    [SerializeField] private Image _musicOffImage;
     private void Awake()
     {
+        BackgroundMusic.Instance.RegisterMusicButton(_musicButton, _musicOnImage, _musicOffImage);
         _retryButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE));
 
         managerGame._settingsButton.onClick.AddListener(() =>

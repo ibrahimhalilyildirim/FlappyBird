@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+   public AudioSource _wingSound; 
+   public AudioSource _deadSound; 
 
-    // Update is called once per frame
-    void Update()
+
+   public void OnPressedForJump()
     {
-        
+        _wingSound.Play();
     }
 }

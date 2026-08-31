@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5726828134770325066}
   - component: {fileID: 7134316704715624880}
+  - component: {fileID: 6628368459661442630}
   m_Layer: 0
   m_Name: BackgroundMusic
   m_TagString: Untagged
@@ -129,3 +130,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6628368459661442630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5526808208080768315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 550ee8d4434c03a4cab89bb404afe99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusic
+  _audioSource: {fileID: 7134316704715624880}
+  _backgroundMusicButton: {fileID: 0}
+  _musicOnImage: {fileID: 0}
+  _musicOffImage: {fileID: 0}
