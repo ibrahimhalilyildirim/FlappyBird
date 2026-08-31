@@ -1,13 +1,32 @@
+using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour
 {
     [Header ("References")]
-    [SerializeField] private GameObject _settingsPopupObject;
     [Header("Buttons")]
-    [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _retryButton;
+    [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _soundButton;
+    private GameState _gameState;
+    public GameManager managerGame;
+    // public Time _currentTime = Time.timeScale;
 
+    
+    private void Awake()
+    {
+        _retryButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE));
+
+        managerGame._settingsButton.onClick.AddListener(() =>
+        { 
+            if(_gameState == GameState.Play)
+            {
+            managerGame.OnGamePause();
+            }
+        });
+        _resumeButton.onClick.AddListener(() => managerGame.OnGameResume());
+    }
 }
