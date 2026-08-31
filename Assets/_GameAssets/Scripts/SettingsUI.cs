@@ -11,9 +11,8 @@ public class SettingsUI : MonoBehaviour
     [Header ("References")]
     [Header("Buttons")]
     [SerializeField] private Button _retryButton;
-    [SerializeField] private Button _mainMenuGameOverButton;
-    [SerializeField] private Button _mainMenuPauseButton;
     [SerializeField] private Button _resumeButton;
+    [SerializeField] private Button _soundButton;
     private GameState _gameState;
     public GameManager managerGame;
     // public Time _currentTime = Time.timeScale;
@@ -35,14 +34,5 @@ public class SettingsUI : MonoBehaviour
             }
         });
         _resumeButton.onClick.AddListener(() => managerGame.OnGameResume());
-        
-        _mainMenuGameOverButton.onClick.AddListener(() => LoadMainMenu());
-        _mainMenuPauseButton.onClick.AddListener(() => LoadMainMenu());
-    }
-    private void LoadMainMenu()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene(Consts.SceneNames.MAIN_MENU_SCENE);
-        
     }
 }
