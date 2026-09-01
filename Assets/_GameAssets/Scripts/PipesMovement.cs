@@ -3,6 +3,7 @@ using UnityEngine;
 public class PipesMovement : MonoBehaviour
 {
     [SerializeField] private float speed; 
+    [SerializeField]private GameManager _gameManager;
     
     void FixedUpdate()
     {
@@ -14,4 +15,3 @@ public class PipesMovement : MonoBehaviour
         Destroy(gameObject, 10);
     }
 }
-

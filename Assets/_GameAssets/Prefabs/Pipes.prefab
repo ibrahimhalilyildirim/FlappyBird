@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PipesMovement
   speed: 0.8
+  _gameManager: {fileID: 3671870220842254012, guid: 9850f55d2768667459d72bcf4ff3a732, type: 3}
 --- !u!1 &8599538963547024668
 GameObject:
   m_ObjectHideFlags: 0

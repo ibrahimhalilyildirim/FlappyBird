@@ -6,17 +6,18 @@ using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance {get; private set;}
     public int score = 0;
     public TextMeshProUGUI scoreText;
+    public int _bestScore;
     private GameState _currentGameState;
     public GameManager managerGame;
     public event Action<GameState> OnGameStateChanged;
     public Button _settingsButton;
-
+    private StartButtonScript _startButtonScript;
     [SerializeField] private GameObject _settingsPopupUI;
 
     [SerializeField] private GameObject _gameOverUI;
-    [SerializeField] private AudioSource _deadSound;
     public AudioManager _managerAudio;
 
     public bool _isGamePausePopupActive = false;
@@ -38,6 +39,12 @@ public class GameManager : MonoBehaviour
         score++;
         scoreText.text = score.ToString();
         
+        if(score > _bestScore)
+        {
+            _bestScore = score;
+            PlayerPrefs.SetInt("BestScore", _bestScore);
+            PlayerPrefs.Save();
+        }
     }
     public GameState GetGameState()
     {
@@ -56,17 +63,32 @@ public class GameManager : MonoBehaviour
     {
         managerGame.ChangeGameState(GameState.Pause);
         Time.timeScale = 0;
-        _settingsButton.interactable = _isGamePausePopupActive;
-        _settingsPopupUI.SetActive(!_isGamePausePopupActive);
-        _isGamePausePopupActive = !_isGamePausePopupActive;
-    }
-    public void OnGameResume()
+        _isGamePausePopupActive = true;
+        _settingsButton.interactable = false;
+        _settingsPopupUI.SetActive(true);
+    }    public void OnGameResume()
     {
         managerGame.ChangeGameState(GameState.Play);
         Time.timeScale = 1;
-        _settingsButton.interactable = _isGamePausePopupActive;
-        _settingsPopupUI.SetActive(!_isGamePausePopupActive);
-        _isGamePausePopupActive = !_isGamePausePopupActive;
+        _isGamePausePopupActive = false;
+        _settingsButton.interactable = true;
+        _settingsPopupUI.SetActive(false);
     }
-
+    
+    public int UpdateBestScore()
+    {
+        if(score > _bestScore)
+        {
+            return score;
+        }
+        else
+        {
+            return _bestScore;
+        }
+    }
+    private void Awake()
+    {
+        Instance = this;
+        _bestScore = PlayerPrefs.GetInt("BestScore" , 0);
+    }
 }
