@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 555977428}
   - component: {fileID: 555977427}
   m_Layer: 0
-  m_Name: MusicOnButton
+  m_Name: MusicOnImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2585,7 +2585,7 @@ GameObject:
   - component: {fileID: 1747936743}
   - component: {fileID: 1747936742}
   m_Layer: 0
-  m_Name: MusicOffButton
+  m_Name: MusicOffImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
