@@ -20,7 +20,7 @@ public class StartButtonScript : MonoBehaviour
 
     private void Awake()
     {
-        _gameStartButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE));
+        _gameStartButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE, LoadSceneMode.Single));
     }
     private void Start()
     {

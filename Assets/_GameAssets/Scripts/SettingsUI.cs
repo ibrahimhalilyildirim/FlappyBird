@@ -24,7 +24,7 @@ public class SettingsUI : MonoBehaviour
         _settingsMainMenuButton.onClick.AddListener(() => LoadMainMenu());
         _gameOverMainMenuButton.onClick.AddListener(() => LoadMainMenu());
 
-        _retryButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE));
+        _retryButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE, LoadSceneMode.Single));
 
 
         managerGame._settingsButton.onClick.AddListener(() =>
@@ -38,7 +38,7 @@ public class SettingsUI : MonoBehaviour
     }
     private void LoadMainMenu()
     {
-        SceneManager.LoadScene(Consts.SceneNames.MAIN_MENU_SCENE);
+        SceneManager.LoadScene(Consts.SceneNames.MAIN_MENU_SCENE, LoadSceneMode.Single);
         Time.timeScale = 1;
     }
     private void Start()
