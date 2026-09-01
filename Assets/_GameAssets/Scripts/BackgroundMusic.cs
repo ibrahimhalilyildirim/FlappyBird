@@ -16,15 +16,16 @@ public class BackgroundMusic : MonoBehaviour
         if(Instance != null)
         {
             Destroy(gameObject);
+            return;
         }
         else
         {
             Instance = this;
             _audioSource = GetComponent<AudioSource>();
             DontDestroyOnLoad(this.gameObject);
+            OnPressedMusicButton();
+            SetMusicIcon();
         }
-        OnPressedMusicButton();
-        SetMusicIcon();
     }
     // public void SetMusicMute(bool isMuted)
     // {
@@ -47,11 +48,14 @@ public class BackgroundMusic : MonoBehaviour
     }
     public void OnPressedMusicButton()
     {
+        if(_backgroundMusicButton == null) return;
+
         _backgroundMusicButton.onClick.AddListener(() => SetMusicPause());
         _backgroundMusicButton.onClick.AddListener(() => SetMusicIcon());
     }
     private void SetMusicIcon()
     {
+        if(_musicOnImage == null || _musicOffImage == null) return;
         if (!isPaused)
         {
             _musicOnImage.enabled = true;
