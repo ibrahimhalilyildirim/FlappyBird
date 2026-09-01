@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
@@ -21,8 +22,15 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private Button _musicButton;
     [SerializeField] private Image _musicOnImage;
     [SerializeField] private Image _musicOffImage;
+
+    [SerializeField] private Button _settingsMainMenuButton;
+    [SerializeField] private Button _gameOverMainMenuButton;
     private void Awake()
     {
+        _settingsMainMenuButton.onClick.AddListener(() => LoadMainMenu());
+        _gameOverMainMenuButton.onClick.AddListener(() => LoadMainMenu());
+
+
         BackgroundMusic.Instance.RegisterMusicButton(_musicButton, _musicOnImage, _musicOffImage);
         _retryButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE));
 
@@ -34,5 +42,10 @@ public class SettingsUI : MonoBehaviour
             }
         });
         _resumeButton.onClick.AddListener(() => managerGame.OnGameResume());
+    }
+    private void LoadMainMenu()
+    {
+        SceneManager.LoadScene(Consts.SceneNames.MAIN_MENU_SCENE);
+        Time.timeScale = 1;
     }
 }
