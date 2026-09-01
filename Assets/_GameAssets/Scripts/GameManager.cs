@@ -91,4 +91,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
         _bestScore = PlayerPrefs.GetInt("BestScore" , 0);
     }
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
 }

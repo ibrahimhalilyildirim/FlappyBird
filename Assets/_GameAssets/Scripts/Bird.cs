@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 
 public class Bird : MonoBehaviour
@@ -14,10 +15,13 @@ public class Bird : MonoBehaviour
     [SerializeField] private GameObject _gameOverUI;
     [SerializeField] private AudioManager _managerAudio;
     public GameManager managerGame;
-
     void Update()
-    {   //GetMouseButtonDown 1 kez input alır. GetMouseButton basılı tutulduğu sürece input alır.
-        if(managerGame.GetGameState() == GameState.Play && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()){
+    {   
+        //GetMouseButtonDown 1 kez input alır. GetMouseButton basılı tutulduğu sürece input alır.
+    bool mousePressed = Mouse.current?.leftButton.wasPressedThisFrame ?? false;
+    bool touchPressed = Touchscreen.current?.primaryTouch.press.wasPressedThisFrame ?? false;
+    
+    if(managerGame.GetGameState() == GameState.Play && (mousePressed || touchPressed) && !EventSystem.current.IsPointerOverGameObject()){
             // İkinci şart tıklamanın ekrandaki UI elemanlarına mı tıklandığını kontrol ediyor bir nevi. Zıplamak için boş alana tıklanması gerekiyor yani.
             _rigidBody2D.linearVelocity = Vector2.up * velocity;
             _managerAudio.OnPressedForJump();

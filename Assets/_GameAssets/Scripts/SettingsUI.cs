@@ -1,8 +1,3 @@
-using System;
-using System.Diagnostics.CodeAnalysis;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -29,9 +24,8 @@ public class SettingsUI : MonoBehaviour
         _settingsMainMenuButton.onClick.AddListener(() => LoadMainMenu());
         _gameOverMainMenuButton.onClick.AddListener(() => LoadMainMenu());
 
-
-        BackgroundMusic.Instance.RegisterMusicButton(_musicButton, _musicOnImage, _musicOffImage);
         _retryButton.onClick.AddListener(() => SceneManager.LoadScene(Consts.SceneNames.GAME_SCENE));
+
 
         managerGame._settingsButton.onClick.AddListener(() =>
         { 
@@ -46,5 +40,10 @@ public class SettingsUI : MonoBehaviour
     {
         SceneManager.LoadScene(Consts.SceneNames.MAIN_MENU_SCENE);
         Time.timeScale = 1;
+    }
+    private void Start()
+    {
+        BackgroundMusic.Instance.RegisterMusicButton(_musicButton, _musicOnImage, _musicOffImage);
+        
     }
 }
